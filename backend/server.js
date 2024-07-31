@@ -7,6 +7,8 @@ const app = express();
 
 const PORT = ENV_VARS.PORT;
 
+app.use(express.json()); // Middleware to parse JSON data
+
 // Routers 
 app.use("/netview/auth", authRouter);
 
