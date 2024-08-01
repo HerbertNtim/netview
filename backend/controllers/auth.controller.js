@@ -1,5 +1,6 @@
 import bcryptjs from "bcryptjs";
 import User from "../models/user.model.js";
+import { generateTokenAndSendCookie } from "../utils/generateToken.js";
 
 export const signUp = async (req, res) => {
   try {
@@ -59,6 +60,8 @@ export const signUp = async (req, res) => {
       image
     });
 
+    generateTokenAndSendCookie(newUser._id, res);
+
     await newUser.save();
 
     res.status(201).json({ success: true, message: "User created successfully" });
@@ -68,10 +71,41 @@ export const signUp = async (req, res) => {
   }
 };
 
-export const login = (req, res) => {
-  res.send("Login");
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+   if(!email || !password) {
+    return es.status(400).json({
+      success: false,
+      message: "All fields are required",
+    });
+   }
+
+    const user = await User.findOne({ email: email });
+    const isPasswordMatch = await bcryptjs.compare(password, user.password);
+    if (!user || !isPasswordMatch) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    generateTokenAndSendCookie(user._id, res);
+
+    res.status(200).json({ success: true, message: "Logged In successfully" });
+  } catch (error) {
+    console.log("Error in the log in controller", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 };
 
 export const logout = (req, res) => {
-  res.send("logout");
+  try {
+    res.clearCookie('jwt_netview')
+    res.status(200).json({success: true, message: 'Logged out successfully'});
+  } catch (error) {
+    console.log("Error in Logout controller", error.message);
+    res.status(500).json({success: false, message: "Internal server error"})
+  }
 };
