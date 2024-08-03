@@ -6,6 +6,7 @@ import movieRouter from "./routes/movie.route.js";
 import tvRouter from "./routes/tv.route.js";
 import cookieParser from "cookie-parser";
 import { protectedRoute } from "./middleware/protectedRoute.js";
+import searchRouter from "./routes/search.route.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser()); // Middleware to parse cookies
 app.use("/netview/auth", authRouter);
 app.use("/netview/movies", protectedRoute, movieRouter);
 app.use("/netview/tv", protectedRoute, tvRouter);
+app.use("/netview/search", protectedRoute, searchRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
