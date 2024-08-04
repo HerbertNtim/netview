@@ -1,10 +1,14 @@
+import { Route, Routes } from "react-router-dom";
+import { HomePage, LoginPage, SignUpPage } from "./pages";
+
 const App = () => {
   return (
-    <div>
-      Home
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
-  );
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
+  )
 };
 
 export default App;
