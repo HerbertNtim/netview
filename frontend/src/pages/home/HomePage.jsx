@@ -1,15 +1,14 @@
-import Footer from "../../components/Footer"
-import AuthScreen from "./AuthScreen"
-import HomeScreen from "./HomeScreen"
+import { useAuthStore } from "../../store/authUser";
+import AuthScreen from "./AuthScreen";
+import HomeScreen from "./HomeScreen";
 
 const HomePage = () => {
-  const user = false
+  const { user } = useAuthStore();
   return (
-    <main className="hero-bg h-screen">
-      {user ? <HomeScreen /> : <AuthScreen /> }
-      <Footer />
-    </main>
-  )
-}
+    <>
+      <main>{user ? <HomeScreen /> : <AuthScreen />}</main>
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;
