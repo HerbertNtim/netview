@@ -3,13 +3,16 @@ import Navbar from "../../components/Navbar";
 // import { Info, Play } from "lucide-react";
 import { useState } from "react";
 import useGetTrendingContent from "../../hooks/useGetTrendingContent";
-import { ORIGINAL_IMG_BASE_URL } from "../../utils/constants";
+import { MOVIE_CATEGORIES, ORIGINAL_IMG_BASE_URL, TV_CATEGORIES } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import { Info, Play } from "lucide-react";
+import { useContentStore } from "../../store/content";
+import MovieSlider from "../../components/MovieSlider";
 
 const HomeScreen = () => {
 	const [imgLoading, setImgLoading] = useState(true);
   const {trendingContent} = useGetTrendingContent();
+  const {contentType} = useContentStore();
 
   if (!trendingContent)
 		return (
@@ -84,11 +87,11 @@ const HomeScreen = () => {
 				</div>
 			</div>
 
-			{/* <div className='flex flex-col gap-10 bg-black py-10'>
+			<div className='flex flex-col gap-10 bg-black py-10'>
 				{contentType === "movie"
 					? MOVIE_CATEGORIES.map((category) => <MovieSlider key={category} category={category} />)
 					: TV_CATEGORIES.map((category) => <MovieSlider key={category} category={category} />)}
-			</div> */}
+			</div>
 		</>
 	);
 };
