@@ -18,10 +18,7 @@ const MovieSlider = ({ category }) => {
   useEffect(() => {
     const getContent = async () => {
       try {
-        console.log(`Fetching content for type: ${contentType} and category: ${category}`);
         const res = await axios.get(`/netview/${contentType}/${category}`);
-        console.log(`Fetching content for type: ${contentType} and category: ${category}`);
-        console.log('Response from API:', res.data)
         if (res.data && Array.isArray(res.data.content)) {
           setContent(res.data.content);
         } else {
@@ -44,7 +41,7 @@ const MovieSlider = ({ category }) => {
         </h2>
         <div className="mt-2 flex items-center gap-1 text-red-800">
           <Ban size={30} />
-          <p>Error fetching content. Please try again later.</p>
+          <p>Error fetching content. Please Refresh.</p>
         </div>
       </div>
     );
