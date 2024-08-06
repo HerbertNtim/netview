@@ -79,9 +79,10 @@ export const getCategoryMovie = async(req, res) => {
     const {category} = req.params;
     const url = `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`;
     const data = await fetchMovieFromTMDB(url);
+    console.log(data);
     res.status(200).json({
       success: true,
-      categoryMovies: data.results,
+      content: data.results,
     });
   } catch (error) {
     console.log('Error in getCategoryMovie controller', error.message)

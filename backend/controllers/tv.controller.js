@@ -81,7 +81,7 @@ export const getTvsByCategory = async(req, res) => {
     const data = await fetchMovieFromTMDB(url);
     res.status(200).json({
       success: true,
-      categoryMovies: data.results,
+      content: data.results,
     });
   } catch (error) {
     console.log('Error in getCategoryMovie controller', error.message)
