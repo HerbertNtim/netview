@@ -22,7 +22,6 @@ const WatchPage = () => {
         const res = await axios.get(
           `/netview/${contentType}/${id}/trailers`
         );
-        console.log("API Response:", res);
         setTrailers(res.data.trailers);
       } catch (error) {
         console.error("Error fetching trailers:", error.response || error.message);
@@ -35,7 +34,41 @@ const WatchPage = () => {
     getTrailers();
   }, [contentType, id]);
 
-  console.log("trailers:", trailers);
+  useEffect(() => {
+    const getSimilarContent = async () => {
+      try {
+        const res = await axios.get(
+          `/netview/${contentType}/${id}/similar`
+        );
+        setSimilarContent(res.data.similarMovies);
+      } catch (error) {
+        console.error("Error fetching similar content:", error.response || error.message);
+        if (error.message.includes("404")) {
+          setTrailers([]);
+        }
+      }
+    };
+
+    getSimilarContent();
+  }, [contentType, id]);
+
+  useEffect(() => {
+    const getDetails = async () => {
+      try {
+        const res = await axios.get(
+          `/netview/${contentType}/${id}/details`
+        );
+        setContent(res.data.details);
+      } catch (error) {
+        console.error("Error fetching details:", error.response || error.message);
+        if (error.message.includes("404")) {
+          setContent([]);
+        }
+      }
+    };
+
+    getDetails();
+  }, [contentType, id]);
 
   return <div>WatchPage</div>;
 };
