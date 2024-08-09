@@ -25,7 +25,7 @@ export const getTrailerMovie = async (req, res) => {
     const data = await fetchMovieFromTMDB(url);
     res.status(200).json({
       success: true,
-      trailer: data.results,
+      trailers: data.results,
     });
   } catch (error) {
     console.log("Error in the getTrailerMovie controller: ", error);

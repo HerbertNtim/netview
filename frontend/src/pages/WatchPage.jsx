@@ -5,29 +5,35 @@ import axios from "axios";
 
 const WatchPage = () => {
   const [trailers, setTrailers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentTrailer, setCurrentTrailer] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [currentTrailerIdx, setCurrentTrailerIdx] = useState(0);
   const [similarContent, setSimilarContent] = useState([]);
-  const { id } = useParams();
+  const [content, setContent] = useState({});
 
-  const { contentTypes } = useContentStore();
+  const { id } = useParams();
+  const { contentType } = useContentStore();
+
+  console.log("contentType:", contentType, "id:", id);
+
 
   useEffect(() => {
-    const getTrailer = async () => {
+    const getTrailers = async () => {
       try {
-        const response = await axios.get(
-          `netview/${contentTypes}/${id}/trailers`
+        const res = await axios.get(
+          `/netview/${contentType}/${id}/trailers`
         );
-        setTrailers(response.data.trailers);
+        console.log("API Response:", res);
+        setTrailers(res.data.trailers);
       } catch (error) {
+        console.error("Error fetching trailers:", error.response || error.message);
         if (error.message.includes("404")) {
           setTrailers([]);
         }
       }
     };
 
-    getTrailer();
-  }, [contentTypes, id]);
+    getTrailers();
+  }, [contentType, id]);
 
   console.log("trailers:", trailers);
 

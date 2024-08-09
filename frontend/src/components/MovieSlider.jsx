@@ -34,7 +34,7 @@ const MovieSlider = ({ category }) => {
     };
 
     getContent();
-  }, [category, contentType]);
+  }, [category, contentType])
 
   const scrollLeft = () => {
     if(sliderRef.current){
