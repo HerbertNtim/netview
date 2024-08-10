@@ -16,7 +16,7 @@ const MovieSlider = ({ category }) => {
   const formattedCategoryName =
     category.replaceAll("_", " ")[0].toUpperCase() +
     category.replaceAll("_", " ").slice(1);
-  const formattedContentTypes = contentType === "movies" ? "Movies" : "TV Shows";
+  const formattedContentTypes = contentType === "movie" ? "Movies" : "TV Shows";
 
   useEffect(() => {
     const getContent = async () => {
