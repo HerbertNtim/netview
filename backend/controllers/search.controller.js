@@ -22,12 +22,12 @@ export const searchPerson = async (req, res) => {
         },
       },
     });
-
+    console.log(person.results[0].profile_path);
 
     res.status(200).json({success: true, content: person.results});
   } catch (error) {
     console.log("Error in searchPerson controller ", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -44,8 +44,8 @@ export const searchMovie = async (req, res) => {
       $push: {
         searchHistory: {
           id: movie.results[0].id,
-          image: movie.results[0].profile_path,
-          title: movie.results[0].name,
+          image: movie.results[0].poster_path,
+          title: movie.results[0].title || movie.results[0].original_title,
           searchType: "movie",
           createdAt: new Date(),
         },
@@ -55,7 +55,7 @@ export const searchMovie = async (req, res) => {
     res.status(200).json({success: true, content: movie.results});
   } catch (error) {
     console.log("Error in searchMovie controller ", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -72,7 +72,7 @@ export const searchTv = async (req, res) => {
       $push: {
         searchHistory: {
           id: tv.results[0].id,
-          image: tv.results[0].profile_path,
+          image: tv.results[0].poster_path,
           title: tv.results[0].name,
           searchType: "tv",
           createdAt: new Date(),
@@ -83,7 +83,7 @@ export const searchTv = async (req, res) => {
     res.status(200).json({success: true, content: tv.results});
   } catch (error) {
     console.log("Error in searchTv controller ", error.message);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 

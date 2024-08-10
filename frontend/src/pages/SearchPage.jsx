@@ -4,6 +4,8 @@ import { useContentStore } from "../store/content";
 import { Search } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
 
 const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("movie");
@@ -25,7 +27,7 @@ const SearchPage = () => {
       const res = await axios.get(`/netview/search/${activeTab}/${searchItem}`);
       setResults(res.data.content);
     } catch (error) {
-      if(error.status === 404) {
+      if (error.status === 404) {
         toast.error("No results found");
       } else {
         toast.error("An error occurred. Please try again later");
@@ -82,6 +84,44 @@ const SearchPage = () => {
             <Search className="size-6" />
           </button>
         </form>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {results.map((result) => {
+            if (!result.poster_path && !result.profile_path) return null;
+
+            return (
+              <div key={result.id} className="bg-gray-950 p-4 rounded">
+                {activeTab === "person" ? (
+                  <div className="flex flex-col items-center relative group">
+                    <img
+                      src={ORIGINAL_IMG_BASE_URL + result.profile_path}
+                      alt={result.name}
+                      className="max-h-96 rounded mx-auto hover:transition-transform hover:duration-500 hover:ease-in-out group-hover:scale-125"
+                    />
+                    <h2 className="mt-2 text-xl font-bold">{result.name}</h2>
+                  </div>
+                ) : (
+                  <Link
+                    to={"/watch/" + result.id}
+                    onClick={() => {
+                      setContentType(activeTab);
+                    }}
+                    className="relative group"
+                  >
+                    <img
+                      src={ORIGINAL_IMG_BASE_URL + result.poster_path}
+                      alt={result.title || result.name}
+                      className="w-full h-auto rounded hover:transition-transform hover:duration-500 hover:ease-in-out group-hover:scale-125"
+                    />
+                    <h2 className="mt-2 text-xl font-bold">
+                      {result.title || result.name}
+                    </h2>
+                  </Link>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
