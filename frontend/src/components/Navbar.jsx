@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { LogOut, Menu, Search } from "lucide-react";
 import { useAuthStore } from "../store/authUser";
@@ -7,17 +7,17 @@ import { useContentStore } from "../store/content";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentContent, setCurrentContent] = useState("movie");
   const { user, logout } = useAuthStore();
-  const { setContentType } = useContentStore();
+  const { contentType, setContentType } = useContentStore();
+
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-  const handleNav = (content) => {
-    setContentType(content);
-    setCurrentContent(content);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/")
   }
-
-
 
   return (
     <header className="max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20">
@@ -28,13 +28,13 @@ const Navbar = () => {
 
         {/* desktop navbar items */}
         <div className="hidden sm:flex gap-2 items-center">
-          <Link to="/" className={`${currentContent === 'movie' ? "underline underline-offset-2 hover:underline" : ""}`} onClick={() => handleNav('movie')}>
+          <Link to="/" className={`${contentType === 'movie' ? "underline underline-offset-2" : "hover:underline"}`} onClick={() => setContentType('movie')}>
             Movies
           </Link>
-          <Link to="/" className={`${currentContent === 'tv' ? "underline underline-offset-2 hover:underline" : ""}`} onClick={() => handleNav('tv')}>
+          <Link to="/" className={`${contentType === 'tv' ? "underline underline-offset-2 hover" : "hover:underline"}`} onClick={() => setContentType('tv')}>
             Tv Shows
           </Link>
-          <Link to="/history" className={`${currentContent === null ? "underline underline-offset-2 hover:underline" : ""}`} onClick={() => handleNav(null)}>
+          <Link to="/history" className={`${contentType === null ? "underline underline-offset-2" : "hover:underline"}`} onClick={() => setContentType(null)}>
             Search History
           </Link>
         </div>
@@ -45,11 +45,11 @@ const Navbar = () => {
           <Search className="size-6 cursor-pointer" />
         </Link>
         <img
-          src={user.image}
+          src={user?.image || '/assets/avatar3.png'}
           alt="Avatar"
           className="h-8 rounded cursor-pointer"
         />
-        <LogOut className="size-6 cursor-pointer" onClick={logout} />
+        <LogOut className="size-6 cursor-pointer" onClick={handleLogout} />
         <div className="sm:hidden">
           <Menu className="size-6 cursor-pointer" onClick={toggleMobileMenu} />
         </div>
