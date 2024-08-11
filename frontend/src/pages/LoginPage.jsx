@@ -2,20 +2,24 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     login({ email, password });
-    navigate('/home');
+    navigate("/home");
   };
 
-	
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="h-screen w-full hero-bg">
@@ -49,7 +53,7 @@ const LoginPage = () => {
               />
             </div>
 
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="text-sm font-medium text-gray-300 block"
@@ -57,13 +61,18 @@ const LoginPage = () => {
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring"
                 placeholder="••••••••"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {showPassword ? (
+                <Eye size={24} className="text-white  absolute cursor-pointer top-1/2 right-4 " onClick={handleClickShowPassword} />
+              ) : (
+                <EyeOff size={24} className="text-white absolute cursor-pointer top-1/2 right-4" onClick={handleClickShowPassword} />
+              )}
             </div>
 
             <button
