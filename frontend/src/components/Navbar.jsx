@@ -7,11 +7,16 @@ import { useContentStore } from "../store/content";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentContent, setCurrentContent] = useState("movie");
   const { user, logout } = useAuthStore();
+  const { setContentType } = useContentStore();
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const handleNav = (content) => {
+    setContentType(content);
+    setCurrentContent(content);
+  }
 
-  const { setContentType } = useContentStore();
 
 
   return (
@@ -23,13 +28,13 @@ const Navbar = () => {
 
         {/* desktop navbar items */}
         <div className="hidden sm:flex gap-2 items-center">
-          <Link to="/" className="hover:underline" onClick={() => setContentType('movie')}>
+          <Link to="/" className={`${currentContent === 'movie' ? "underline underline-offset-2 hover:underline" : ""}`} onClick={() => handleNav('movie')}>
             Movies
           </Link>
-          <Link to="/" className="hover:underline" onClick={() => setContentType('tv')}>
+          <Link to="/" className={`${currentContent === 'tv' ? "underline underline-offset-2 hover:underline" : ""}`} onClick={() => handleNav('tv')}>
             Tv Shows
           </Link>
-          <Link to="/history" className="hover:underline">
+          <Link to="/history" className={`${currentContent === null ? "underline underline-offset-2 hover:underline" : ""}`} onClick={() => handleNav(null)}>
             Search History
           </Link>
         </div>
@@ -52,7 +57,7 @@ const Navbar = () => {
 
       {/* mobile navbar items */}
       {isMobileMenuOpen && (
-        <div className="w-full sm:hidden mt-4 z-50 bg-black border rounded border-gray-800">
+        <div className="w-full h-screen flex flex-col justify-start px-4 sm:hidden mt-4 z-50 bg-black border rounded border-gray-800">
           <Link
             to={"/"}
             className="block hover:underline p-2"

@@ -40,7 +40,7 @@ export const useAuthStore = create((set) => ({
     try {
       const response = await axios.post("/netview/auth/logout");
       set({ user: null, isLoggingOut: false });
-      toast.success(response.data.message);
+      toast.success(response.data.message)
     } catch (error) {
       console.log("Error in logout frontend");
       toast.error(error.response.data.message);

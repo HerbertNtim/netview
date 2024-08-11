@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser";
 
@@ -9,13 +9,13 @@ const SignUpPage = () => {
   const [email, setEmail] = useState(emailValue || "");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const { signup } = useAuthStore();
 
   const handleSignUp = (e) => {
     e.preventDefault();
     signup({ email, username, password });
-    <Navigate to={'/'} />
+     navigate('/home')
   };
 
   return (
@@ -26,8 +26,8 @@ const SignUpPage = () => {
         </Link>
       </header>
 
-      <div className="flex justify-center items-center mt-10 mx-3">
-        <div className="w-full max-w-md p-8 space-y-6 bg-black/60 rounded-lg shadow-md">
+      <div className="flex justify-center items-center mt-0 mx-3">
+        <div className="w-full max-w-md p-6 space-y-6 bg-black/60 rounded-lg shadow-md">
           <h1 className="text-center text-white text-2xl font-bold mb-4">
             Sign Up
           </h1>

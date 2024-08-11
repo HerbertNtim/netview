@@ -6,7 +6,7 @@ const useGetTrendingContent = () => {
 	const [trendingContent, setTrendingContent] = useState(null);
 	const { contentType } = useContentStore();
 
-	useEffect(() => {
+	useEffect(() => { 
 		const getTrendingContent = async () => {
 			const res = await axios.get(`/netview/${contentType}/trending`);
 			setTrendingContent(res.data.content);

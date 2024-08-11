@@ -35,8 +35,6 @@ const SearchPage = () => {
     }
   };
 
-  console.log("results:", results);
-
   return (
     <section className="bg-black text-white min-h-screen">
       <Navbar />
@@ -77,7 +75,7 @@ const SearchPage = () => {
             type="text"
             value={searchItem}
             onChange={(e) => setSearchItem(e.target.value)}
-            placeholder={`Search for a ${activeTab}`}
+            placeholder={`Search for a ${activeTab === 'tv' ? 'TV Show' : activeTab}`}
             className="w-full p-2 rounded bg-gray-800 text-white "
           />
           <button className="text-white rounded bg-red-500 hover:bg-red-700 px-4 py-2">

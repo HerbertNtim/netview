@@ -19,7 +19,7 @@ app.use(cors())
 
 // Routers 
 app.use("/netview/auth", authRouter);
-app.use("/netview/movies", protectedRoute, movieRouter);
+app.use("/netview/movie", protectedRoute, movieRouter);
 app.use("/netview/tv", protectedRoute, tvRouter);
 app.use("/netview/search", protectedRoute, searchRouter)
 
