@@ -2,7 +2,7 @@
 
 Welcome to the Netflix Clone project! This is a full-stack application that mimics the core features of Netflix, allowing users to browse movies and TV shows, watch trailers, and much more.
 
-![NetView](./assets/screenshot.png)
+![NetView](https://github.com/HerbertNtim/netview/blob/main/frontend/public/assets/Screenshot.png)
 
 ## ⚛️ Tech Stack
 
