@@ -29,7 +29,6 @@ export const useAuthStore = create((set) => ({
       set({ user: response.data.user, isLoggingIn: false});
       toast.success("Logged In Successfully");
     } catch (error) {
-      console.log("Error in log in frontend");
       toast.error(error.response.data.message);
       set({ user: null, isLoggingIn: false });
     }
@@ -42,7 +41,6 @@ export const useAuthStore = create((set) => ({
       set({ user: null, isLoggingOut: false });
       toast.success(response.data.message)
     } catch (error) {
-      console.log("Error in logout frontend");
       toast.error(error.response.data.message);
     }
   },

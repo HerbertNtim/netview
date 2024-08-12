@@ -66,7 +66,6 @@ export const signUp = async (req, res) => {
 
     res.status(201).json({ success: true, message: "User created successfully" });
   } catch (error) {
-    console.log("Error in the signup controller", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -95,7 +94,6 @@ export const login = async (req, res) => {
 
     res.status(200).json({ success: true, message: "Logged In successfully" });
   } catch (error) {
-    console.log("Error in the log in controller", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -105,7 +103,6 @@ export const logout = (req, res) => {
     res.clearCookie('jwt_netview')
     res.status(200).json({success: true, message: 'Logged out successfully'});
   } catch (error) {
-    console.log("Error in Logout controller", error.message);
     res.status(500).json({success: false, message: "Internal server error"})
   }
 };
@@ -115,7 +112,6 @@ export const authCheck = (req, res) => {
   try {
     res.status(200).json({ success: true, user: req.user });
   } catch (error) {
-    console.log("Error in authCheck controller", error);
     res.status(500).json({ success: false, message: "Internal Server Error"})
   }
 }

@@ -13,7 +13,6 @@ export const getTrendingTV = async (req, res) => {
       content: randomMovie,
     });
   } catch (error) {
-    console.log("Error in the getTrendingMovie controller: ", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -28,7 +27,6 @@ export const getTvTrailer = async (req, res) => {
       trailers: data.results,
     });
   } catch (error) {
-    console.log("Error in the getTrailerMovie controller: ", error);
     if (error.message.includes("404")) {
       return res.status(404).send(null);
     }
@@ -48,7 +46,6 @@ export const getTvDetails = async (req, res) => {
       details: data,
     });
   } catch (error) {
-    console.log("Error in the getTrailerDetails controller: ", error);
     if (error.message.includes("404")) {
       return res.status(404).send(null);
     }
@@ -66,7 +63,6 @@ export const getSimilarTVs = async (req, res) => {
       similarMovies: data.results,
     });
   } catch (error) {
-    console.log("Error in the getSimilarMovies controller: ", error);
     if (error.message.includes("404")) {
       return res.status(404).send(null);
     }
@@ -84,7 +80,6 @@ export const getTvsByCategory = async(req, res) => {
       content: data.results,
     });
   } catch (error) {
-    console.log('Error in getCategoryMovie controller', error.message)
     res.status(500).json({success: false, message: 'Internal server error'});
   }
 }

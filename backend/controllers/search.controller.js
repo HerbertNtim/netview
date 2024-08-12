@@ -22,11 +22,9 @@ export const searchPerson = async (req, res) => {
         },
       },
     });
-    console.log(person.results[0].profile_path);
 
     res.status(200).json({success: true, content: person.results});
   } catch (error) {
-    console.log("Error in searchPerson controller ", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -54,7 +52,6 @@ export const searchMovie = async (req, res) => {
 
     res.status(200).json({success: true, content: movie.results});
   } catch (error) {
-    console.log("Error in searchMovie controller ", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -82,7 +79,6 @@ export const searchTv = async (req, res) => {
 
     res.status(200).json({success: true, content: tv.results});
   } catch (error) {
-    console.log("Error in searchTv controller ", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
@@ -92,7 +88,7 @@ export const getSearchHistory = async (req, res) => {
     const user = await User.findById(req.user._id);
     res.status(200).json({success: true, content: user.searchHistory});
   } catch (error) {
-    console.log("Error in getSearchHistory controller ", error.message);
+    ("Error in getSearchHistory controller ", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
@@ -112,7 +108,6 @@ export const deleteItemFromSearchHistory = async (req, res) => {
 
     res.status(200).json({success: true, message: "Item deleted from search history"});
   } catch (error) {
-    console.log("Error in deleteItemFromSearchHistory controller ", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
