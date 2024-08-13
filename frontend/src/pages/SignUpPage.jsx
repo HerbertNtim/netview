@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser";
 import { Eye, EyeOff } from "lucide-react";
@@ -11,18 +11,18 @@ const SignUpPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
-  const { signup } = useAuthStore();
+  const { signup, isSigningUp, authCheck } = useAuthStore();
 
   const handleSignUp = (e) => {
     e.preventDefault();
     signup({ email, username, password });
-    navigate("/home");
   };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   }
+
+  
 
   return (
     <section className="h-screen w-full hero-bg">
@@ -104,12 +104,13 @@ const SignUpPage = () => {
             </div>
 
             <button
-              className="w-full py-2 bg-red-600 text-white font-semibold rounded-md
+							className='w-full py-2 bg-red-600 text-white font-semibold rounded-md
 							hover:bg-red-700
-						"
-            >
-              Sign Up
-            </button>
+						'
+							disabled={isSigningUp}
+						>
+							{isSigningUp ? "Loading..." && authCheck() : "Login"}
+						</button>
           </form>
           <div className="text-center text-gray-400">
             Already a member?{" "}

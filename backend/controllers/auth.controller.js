@@ -73,7 +73,7 @@ export const signUp = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    
    if(!email || !password) {
     return es.status(400).json({
       success: false,

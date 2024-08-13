@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
 import { Ban, ChevronLeft, ChevronRight } from "lucide-react";
 import axios from "axios";
+import MovieSliderSkeleton from "./skeletons/MovieSliderSkeleton";
 
 const MovieSlider = ({ category }) => {
   const { contentType } = useContentStore();
@@ -60,7 +61,9 @@ const MovieSlider = ({ category }) => {
   }
 
   if (!content.length) {
-    return <div className="relative md:px-20 px-5 text-white">Loading...</div>;
+    return <div className="relative md:px-20 px-5 text-white">
+      <MovieSliderSkeleton />
+    </div>;
   }
 
   return (

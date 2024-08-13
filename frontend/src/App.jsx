@@ -10,7 +10,6 @@ import WatchPage from "./pages/WatchPage";
 import SearchPage from "./pages/SearchPage";
 import SearchHistoryPage from "./pages/SearchHistoryPage";
 import NotFoundPage from "./pages/NotFound";
-import HomeScreen from "./pages/home/HomeScreen";
 
 const App = () => {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
@@ -33,7 +32,6 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomeScreen />} />
         <Route
           path="/signup"
           element={!user ? <SignUpPage /> : <Navigate to={"/"} />}

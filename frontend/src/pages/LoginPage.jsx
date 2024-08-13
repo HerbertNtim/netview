@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser";
 import { Eye, EyeOff } from "lucide-react";
@@ -8,18 +8,18 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useAuthStore();
-  const navigate = useNavigate();
+  const { login, isLoggingIn, authCheck } = useAuthStore();
+
 
   const handleLogin = (e) => {
     e.preventDefault();
     login({ email, password });
-    navigate("/home");
   };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
 
   return (
     <div className="h-screen w-full hero-bg">
@@ -69,19 +69,28 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {showPassword ? (
-                <Eye size={24} className="text-white  absolute cursor-pointer top-1/2 right-4 " onClick={handleClickShowPassword} />
+                <Eye
+                  size={24}
+                  className="text-white  absolute cursor-pointer top-1/2 right-4 "
+                  onClick={handleClickShowPassword}
+                />
               ) : (
-                <EyeOff size={24} className="text-white absolute cursor-pointer top-1/2 right-4" onClick={handleClickShowPassword} />
+                <EyeOff
+                  size={24}
+                  className="text-white absolute cursor-pointer top-1/2 right-4"
+                  onClick={handleClickShowPassword}
+                />
               )}
             </div>
 
             <button
-              className="w-full py-2 bg-red-600 text-white font-semibold rounded-md
+							className='w-full py-2 bg-red-600 text-white font-semibold rounded-md
 							hover:bg-red-700
-						"
-            >
-              Login
-            </button>
+						'
+							disabled={isLoggingIn}
+						>
+							{isLoggingIn ? "Loading..." && authCheck() : "Login"}
+						</button>
           </form>
           <div className="text-center text-gray-400">
             Don&apos;t have an account?{" "}

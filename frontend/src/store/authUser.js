@@ -26,7 +26,7 @@ export const useAuthStore = create((set) => ({
     set({ isLoggingIn: true });
     try {
       const response = await axios.post("/netview/auth/login", credentials);
-      set({ user: response.data.user, isLoggingIn: false});
+      set({ user: response.data.user, isLoggingIn: false });
       toast.success("Logged In Successfully");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -39,7 +39,7 @@ export const useAuthStore = create((set) => ({
     try {
       const response = await axios.post("/netview/auth/logout");
       set({ user: null, isLoggingOut: false });
-      toast.success(response.data.message)
+      toast.success(response.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
     }
