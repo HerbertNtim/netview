@@ -59,6 +59,7 @@ const SearchHistoryPage = () => {
 		);
 	}
 
+
 	return (
 		<div className='bg-black text-white min-h-screen'>
 			<Navbar />

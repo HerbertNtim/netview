@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
+import MovieSliderSkeleton from "../components/skeletons/MovieSliderSkeleton";
 
 const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("movie");
@@ -34,6 +35,10 @@ const SearchPage = () => {
       }
     }
   };
+
+  if(results.length === 0) {
+    <MovieSliderSkeleton />
+  }
 
   return (
     <section className="bg-black text-white min-h-screen">
