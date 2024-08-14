@@ -1,4 +1,5 @@
-# 🎥 NetView
+# 🎥 NetView ## Demo
+[Click here to view the demo](https://netview-t16p.onrender.com/)
 
 Welcome to the Netflix Clone project! This is a full-stack application that mimics the core features of Netflix, allowing users to browse movies and TV shows, watch trailers, and much more.
 
