@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import Logo from "../../components/Logo";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
@@ -15,10 +19,16 @@ const AuthScreen = () => {
   return (
     <div className="hero-bg relative">
       {/* Navbar */}
-      <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10">
+      <header
+        className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10"
+        data-aos="fade-down-right"
+        data-aos-duration="1000"
+        data-aos-delay="50"
+        data-aos-easing="ease-in-out"
+      >
         <Logo />
         <div className="flex items-center justify-between gap-4 mr-3">
-        <Link
+          <Link
             to={"/login"}
             className="py-1 px-2 bg-gray-500 text-black font-semibold rounded-md
 							hover:bg-gray-700"
@@ -43,11 +53,31 @@ const AuthScreen = () => {
 
       {/* hero section */}
       <div className="flex flex-col items-center justify-center text-center py-40 text-white max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+        <h1
+          className="text-4xl md:text-6xl font-bold mb-4"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+          data-aos-easing="ease-in-out"
+        >
           Unlimited movies, TV shows, and more
         </h1>
-        <p className="text-lg mb-4">Watch anywhere. Cancel anytime.</p>
-        <p className="mb-4">
+        <p
+          className="text-lg mb-4"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+          data-aos-easing="ease-in-out"
+        >
+          Watch anywhere. Cancel anytime.
+        </p>
+        <p
+          className="mb-4"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+          data-aos-easing="ease-in-out"
+        >
           Ready to watch? Enter your email to create or restart your membership.
         </p>
 
@@ -67,14 +97,6 @@ const AuthScreen = () => {
             <ChevronRight className="size-8 md:size-10" />
           </button>
         </form>
-
-        <Link
-          to={"/login"}
-          className="py-3 px-6 my-8 bg-gray-500 text-black font-semibold rounded-md
-							hover:bg-gray-700"
-        >
-          Login as Guest
-        </Link>
       </div>
 
       {/* separator */}
@@ -84,7 +106,13 @@ const AuthScreen = () => {
       <div className="py-10 bg-black text-white">
         <div className="flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2">
           {/* left side */}
-          <div className="flex-1 text-center md:text-left">
+          <div
+            className="flex-1 text-center md:text-left"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+            data-aos-easing="ease-in-out"
+          >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4">
               Enjoy on your TV
             </h2>
@@ -94,7 +122,13 @@ const AuthScreen = () => {
             </p>
           </div>
           {/* right side */}
-          <div className="flex-1 z-20 relative">
+          <div
+            className="flex-1 z-20 relative"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="1000"
+            data-aos-easing="ease-in-out"
+          >
             <img
               src="/assets/tv.png"
               alt="Tv image"
@@ -120,7 +154,13 @@ const AuthScreen = () => {
       <div className="py-10 bg-black text-white">
         <div className="flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col-reverse px-4 md:px-2">
           {/* left side */}
-          <div className="flex-1 relative">
+          <div
+            className="flex-1 relative"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="1000"
+            data-aos-easing="ease-in-out"
+          >
             <div className="relative">
               <img
                 src="/assets/stranger-things-lg.png"
@@ -159,7 +199,13 @@ const AuthScreen = () => {
           </div>
 
           {/* right side */}
-          <div className="flex-1 md:text-left text-center">
+          <div
+            className="flex-1 md:text-left text-center"
+            data-aos="zoom-in-right"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+            data-aos-easing="ease-in-out"
+          >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4 text-balance">
               Download your shows to watch offline
             </h2>
@@ -178,7 +224,13 @@ const AuthScreen = () => {
       <div className="py-10 bg-black text-white">
         <div className="flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2">
           {/* left side */}
-          <div className="flex-1 text-center md:text-left">
+          <div
+            className="flex-1 text-center md:text-left"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="1300"
+            data-aos-easing="ease-in-out"
+          >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4">
               Watch everywhere
             </h2>
@@ -189,7 +241,13 @@ const AuthScreen = () => {
           </div>
 
           {/* right side */}
-          <div className="flex-1 relative overflow-hidden">
+          <div
+            className="flex-1 relative overflow-hidden"
+            data-aos="fade-right"
+            data-aos-duration="100"
+            data-aos-delay="1400"
+            data-aos-easing="ease-in-out"
+          >
             <img
               src="/assets/device-pile.png"
               alt="Device image"
@@ -220,7 +278,13 @@ const AuthScreen = () => {
         "
         >
           {/* left */}
-          <div className="flex-1 relative">
+          <div
+            className="flex-1 relative"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+            data-aos-delay="1100"
+            data-aos-easing="ease-in-out"
+          >
             <img
               src="/assets/kids.png"
               alt="Enjoy on your TV"
@@ -228,7 +292,13 @@ const AuthScreen = () => {
             />
           </div>
           {/* right */}
-          <div className="flex-1 text-center md:text-left">
+          <div
+            className="flex-1 text-center md:text-left"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="1200"
+            data-aos-easing="ease-in-out"
+          >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4">
               Create profiles for kids
             </h2>
