@@ -17,7 +17,7 @@ const AuthScreen = () => {
   };
 
   return (
-    <div className="hero-bg relative">
+    <div className="hero-bg relative overflow-hidden">
       {/* Navbar */}
       <header
         className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10"
@@ -30,7 +30,7 @@ const AuthScreen = () => {
         <div className="flex items-center justify-between gap-4 mr-3">
           <Link
             to={"/login"}
-            className="py-1 px-2 bg-gray-500 text-black font-semibold rounded-md
+            className="hidden sm:flex py-1 px-2 bg-gray-500 text-black font-semibold rounded-md
 							hover:bg-gray-700"
           >
             Login as Guest
@@ -126,7 +126,7 @@ const AuthScreen = () => {
             className="flex-1 z-20 relative"
             data-aos="zoom-in"
             data-aos-duration="1000"
-            data-aos-delay="1000"
+            data-aos-delay="105"
             data-aos-easing="ease-in-out"
           >
             <img
@@ -158,7 +158,7 @@ const AuthScreen = () => {
             className="flex-1 relative"
             data-aos="fade-right"
             data-aos-duration="1000"
-            data-aos-delay="1000"
+            data-aos-delay="50"
             data-aos-easing="ease-in-out"
           >
             <div className="relative">
@@ -203,7 +203,7 @@ const AuthScreen = () => {
             className="flex-1 md:text-left text-center"
             data-aos="zoom-in-right"
             data-aos-duration="1000"
-            data-aos-delay="100"
+            data-aos-delay="70"
             data-aos-easing="ease-in-out"
           >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4 text-balance">
@@ -228,7 +228,7 @@ const AuthScreen = () => {
             className="flex-1 text-center md:text-left"
             data-aos="fade-left"
             data-aos-duration="1000"
-            data-aos-delay="1300"
+            data-aos-delay="80"
             data-aos-easing="ease-in-out"
           >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4">
@@ -244,8 +244,8 @@ const AuthScreen = () => {
           <div
             className="flex-1 relative overflow-hidden"
             data-aos="fade-right"
-            data-aos-duration="100"
-            data-aos-delay="1400"
+            data-aos-duration="1000"
+            data-aos-delay="70"
             data-aos-easing="ease-in-out"
           >
             <img
@@ -282,7 +282,7 @@ const AuthScreen = () => {
             className="flex-1 relative"
             data-aos="fade-down"
             data-aos-duration="1000"
-            data-aos-delay="1100"
+            data-aos-delay="90"
             data-aos-easing="ease-in-out"
           >
             <img
@@ -296,7 +296,7 @@ const AuthScreen = () => {
             className="flex-1 text-center md:text-left"
             data-aos="fade-up"
             data-aos-duration="1000"
-            data-aos-delay="1200"
+            data-aos-delay="50"
             data-aos-easing="ease-in-out"
           >
             <h2 className="text-4xl md:text-5xl text-red-700 font-extrabold mb-4">
