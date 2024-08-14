@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser";
@@ -8,8 +8,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { login, isLoggingIn, authCheck } = useAuthStore();
-
+  const { login, isLoggingIn } = useAuthStore();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,7 +18,6 @@ const LoginPage = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
 
   return (
     <div className="h-screen w-full hero-bg">
@@ -84,13 +82,13 @@ const LoginPage = () => {
             </div>
 
             <button
-							className='w-full py-2 bg-red-600 text-white font-semibold rounded-md
+              className="w-full py-2 bg-red-600 text-white font-semibold rounded-md
 							hover:bg-red-700
-						'
-							disabled={isLoggingIn}
-						>
-							{isLoggingIn ? "Loading..." && authCheck() : "Login"}
-						</button>
+						"
+              disabled={isLoggingIn}
+            >
+              {isLoggingIn ? "Loading..." : "Login"}
+            </button>
           </form>
           <div className="text-center text-gray-400">
             Don&apos;t have an account?{" "}
