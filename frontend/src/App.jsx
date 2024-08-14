@@ -12,11 +12,12 @@ import SearchHistoryPage from "./pages/SearchHistoryPage";
 import NotFoundPage from "./pages/NotFound";
 
 const App = () => {
-  const { user, isCheckingAuth, authCheck } = useAuthStore();
+  const { user, isCheckingAuth, authCheck, isLoggingIn, isSigningUp } =
+    useAuthStore();
 
   useEffect(() => {
     authCheck();
-  }, [authCheck]);
+  }, [authCheck, isLoggingIn, isSigningUp]);
 
   if (isCheckingAuth) {
     return (

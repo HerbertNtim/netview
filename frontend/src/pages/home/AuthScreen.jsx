@@ -17,10 +17,18 @@ const AuthScreen = () => {
       {/* Navbar */}
       <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10">
         <Logo />
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-between gap-4 mr-3">
+        <Link
+            to={"/login"}
+            className="py-1 px-2 bg-gray-500 text-black font-semibold rounded-md
+							hover:bg-gray-700"
+          >
+            Login as Guest
+          </Link>
+
           <Link
             to={"/signup"}
-            className="text-white bg-red-600 py-1 px-2 rounded"
+            className="text-white bg-red-900 py-1 px-2 rounded"
           >
             Sign up
           </Link>
@@ -59,6 +67,14 @@ const AuthScreen = () => {
             <ChevronRight className="size-8 md:size-10" />
           </button>
         </form>
+
+        <Link
+          to={"/login"}
+          className="py-3 px-6 my-8 bg-gray-500 text-black font-semibold rounded-md
+							hover:bg-gray-700"
+        >
+          Login as Guest
+        </Link>
       </div>
 
       {/* separator */}

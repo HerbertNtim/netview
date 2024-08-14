@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser";
@@ -7,6 +7,12 @@ import { Eye, EyeOff } from "lucide-react";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [guest, setGuest] =useState(
+    {
+      email: "guest@netview.com",
+      password: 'guest24'
+    }
+  )
   const [showPassword, setShowPassword] = useState(false);
   const { login, isLoggingIn } = useAuthStore();
 
@@ -14,6 +20,11 @@ const LoginPage = () => {
     e.preventDefault();
     login({ email, password });
   };
+
+  const handleLoginGuest = () => {
+    setGuest(guest)
+    login(guest)
+  }
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -33,7 +44,7 @@ const LoginPage = () => {
             Login
           </h1>
 
-          <form className="space-y-4" onSubmit={handleLogin}>
+          <form className="space-y-4" onSubmit={guest ? handleLoginGuest : handleLogin}>
             <div>
               <label
                 htmlFor="email"
@@ -85,9 +96,20 @@ const LoginPage = () => {
               className="w-full py-2 bg-red-600 text-white font-semibold rounded-md
 							hover:bg-red-700
 						"
-              disabled={isLoggingIn}
+              disabled={guest && isLoggingIn}
+              onClick={handleLogin}
             >
-              {isLoggingIn ? "Loading..." : "Login"}
+              {isLoggingIn || guest ? "Login" : "Loading..."}
+            </button>
+
+            <button
+              className="w-full py-2 bg-gray-500 text-black font-semibold rounded-md
+							hover:bg-gray-700
+						"
+              disabled={isLoggingIn}
+              onClick={handleLoginGuest}
+            >
+              {isLoggingIn ? "Loading..." : "Login as Guest"}
             </button>
           </form>
           <div className="text-center text-gray-400">
